@@ -24,10 +24,12 @@ export 'package:provider/provider.dart';
 ///
 /// Ensure you call this in your main method, ensure to use await before it
 /// and convert your main method into an async main method.
-initializeFirebase() async {
+initializeFirebase({FirebaseOptions? firebaseOptions}) async {
   WidgetsFlutterBinding.ensureInitialized();
   if (!Foundation.kIsWeb) {
-    await Firebase.initializeApp();
+    await Firebase.initializeApp(
+      options: firebaseOptions
+    );
   }
   if (Foundation.kDebugMode && Foundation.kIsWeb)
     print("Using HotRestartBypassMechanism (debugOnly)");
